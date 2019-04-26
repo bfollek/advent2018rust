@@ -2,7 +2,6 @@ use crate::util;
 use std::error::Error;
 
 // part_1 sums the frequency changes.
-#[allow(dead_code)]
 pub fn part1(file_name: &str) -> Result<i32, Box<Error>> {
   let v = util::text_file_to_vector(file_name)?;
   let mut res = 0;
