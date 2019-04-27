@@ -26,3 +26,7 @@ pub fn part1_sum(file_name: &str) -> Result<i32, Box<Error>> {
   let res = v.iter().sum();
   Ok(res)
 }
+
+pub fn part2(file_name: &str) -> Result<i32, Box<Error>> {
+  Ok(0)
+}
