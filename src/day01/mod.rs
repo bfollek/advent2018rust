@@ -28,6 +28,7 @@ pub fn part1_sum(file_name: &str) -> Result<i32, Box<Error>> {
   Ok(res)
 }
 
+// part2 returns the first frequency sum that repeats.
 pub fn part2(file_name: &str) -> Result<i32, Box<Error>> {
   let mut freq = 0;
   let mut seen = HashMap::new();
