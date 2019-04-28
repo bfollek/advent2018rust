@@ -1,4 +1,5 @@
 use crate::util;
+use std::collections::HashMap;
 use std::error::Error;
 
 // part_1 sums the frequency changes.
@@ -28,5 +29,22 @@ pub fn part1_sum(file_name: &str) -> Result<i32, Box<Error>> {
 }
 
 pub fn part2(file_name: &str) -> Result<i32, Box<Error>> {
-  Ok(0)
+  let mut freq = 0;
+  let mut seen = HashMap::new();
+  let v = util::text_file_to_vector_i32(file_name)?;
+  loop {
+    // We need &v to avoid a borrow checking error.
+    // http://xion.io/post/code/rust-for-loop.html
+    for i in &v {
+      freq += i;
+      // Reference required here. HashMap.get() apparently dereferences
+      // automatically, though - we're using the value, not the address,
+      // as the key.
+      let b = seen.get(&freq);
+      match b {
+        None => seen.insert(freq, true),
+        Some(_) => return Ok(freq),
+      };
+    }
+  }
 }
