@@ -40,8 +40,7 @@ pub fn part2(file_name: &str) -> Result<i32, Box<Error>> {
       // Reference required here. HashMap.get() apparently dereferences
       // automatically, though - we're using the value, not the address,
       // as the key.
-      let b = seen.get(&freq);
-      match b {
+      match seen.get(&freq) {
         None => seen.insert(freq, true),
         Some(_) => return Ok(freq),
       };
