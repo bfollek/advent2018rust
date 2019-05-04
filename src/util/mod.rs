@@ -8,7 +8,7 @@ pub fn text_file_to_vector<T: ConvertsToText>(file_name: &str) -> Result<Vec<T>,
   let mut txt = String::new();
   f.read_to_string(&mut txt)?;
   let mut v: Vec<T> = Vec::new();
-  let lines = txt.split("\n");
+  let lines = txt.split('\n');
   for l in lines {
     let t = T::convert_to_text(l)?;
     v.push(t);
@@ -27,7 +27,7 @@ impl ConvertsToText for i32 {
     raw
       .to_string()
       .parse()
-      .map_err(|e: std::num::ParseIntError| e.into()) // Box the error
+      .map_err(std::convert::Into::into) // Box the error
   }
 }
 

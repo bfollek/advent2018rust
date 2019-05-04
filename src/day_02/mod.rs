@@ -39,3 +39,7 @@ fn check_id(id: String) -> (bool, bool) {
   }
   (has_2, has_3)
 }
+
+pub fn part_2(file_name: &str) -> Result<String, Box<Error>> {
+  Ok(String::from("foo"))
+}
