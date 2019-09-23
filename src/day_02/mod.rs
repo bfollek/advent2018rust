@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use std::error::Error;
 
 // part_1 does a checksum on the box IDs.
-pub fn part_1(file_name: &str) -> Result<i32, Box<Error>> {
+pub fn part_1(file_name: &str) -> Result<i32, Box<dyn Error>> {
   let mut cnt_2 = 0;
   let mut cnt_3 = 0;
   let ids = util::text_file_to_vector(file_name)?;
@@ -40,6 +40,6 @@ fn check_id(id: String) -> (bool, bool) {
   (has_2, has_3)
 }
 
-pub fn part_2(file_name: &str) -> Result<String, Box<Error>> {
+pub fn _part_2(_file_name: &str) -> Result<String, Box<dyn Error>> {
   Ok(String::from("foo"))
 }
