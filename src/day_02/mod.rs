@@ -40,6 +40,21 @@ fn check_id(id: String) -> (bool, bool) {
   (has_2, has_3)
 }
 
-pub fn _part_2(_file_name: &str) -> Result<String, Box<dyn Error>> {
-  Ok(String::from("foo"))
+pub fn part_2(file_name: &str) -> Result<String, Box<dyn Error>> {
+  let ids: Vec<String> = util::text_file_to_vector(file_name)?;
+  for (i, id1) in ids.iter().enumerate() {
+    for (j, id2) in ids.iter().enumerate() {
+      if i != j {
+        let (b, common_chars) = diff_by_1(id1.to_string(), id2.to_string());
+        if b {
+          return Ok(common_chars.to_string())
+        }
+      }
+    }
+  }
+  Err("id's that diff by 1 char not found")?
+}
+
+fn diff_by_1(s1: String, s2: String) -> (bool, String) {
+  (false, "test".to_string())
 }

@@ -4,6 +4,7 @@ use std::error::Error;
 
 // part_1 sums the frequency changes.
 pub fn part_1(file_name: &str) -> Result<i32, Box<dyn Error>> {
+  // In this case, we need to explicitly type the array.
   let v: Vec<i32> = util::text_file_to_vector(file_name)?;
   let mut res = 0;
   for i in v {
