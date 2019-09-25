@@ -13,8 +13,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Day 2
     assert_eq!(8715, day_02::part_1("testdata/day02.txt")?);
     assert_eq!(
-        String::from("fvstwblgqkhpuixdrnevmaycd"),
-        day_02::part_2("testdata/day02.txt")?
+        "fvstwblgqkhpuixdrnevmaycd",
+        &day_02::part_2("testdata/day02.txt")?
     );
 
     Ok(())
