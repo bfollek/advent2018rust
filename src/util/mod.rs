@@ -1,3 +1,4 @@
+use std::convert::Into;
 use std::error::Error;
 use std::fs;
 use std::io::prelude::*;
@@ -24,7 +25,7 @@ pub trait ConvertsToText {
 
 impl ConvertsToText for i32 {
   fn convert_to_text(raw: &str) -> Result<Self, Box<dyn Error>> {
-    raw.to_string().parse().map_err(std::convert::Into::into) // Box the error
+    raw.to_string().parse().map_err(Into::into) // Box the error
   }
 }
 

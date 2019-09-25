@@ -34,11 +34,14 @@ pub fn part_2(file_name: &str) -> Result<i32, Box<dyn Error>> {
   loop {
     // We need &v to avoid a borrow checking error.
     // http://xion.io/post/code/rust-for-loop.html
+    // The rationale is that &v is an immutable ref/borrow
+    // and ensures that v can't be modified while we're looping.
     for i in &v {
       freq += i;
       // Reference required here. HashMap.get() apparently dereferences
       // automatically, though - we're using the value, not the address,
-      // as the key.
+      // as the key. The DeRef trait? Immutable borrow so that the key
+      // can't change on us? Are patterns emerging, or am I hallucinating?
       match seen.get(&freq) {
         None => seen.insert(freq, true),
         Some(_) => return Ok(freq),
