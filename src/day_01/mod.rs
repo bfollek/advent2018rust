@@ -13,6 +13,7 @@ pub fn part_1(file_name: &str) -> Result<i32, Box<dyn Error>> {
   Ok(res)
 }
 
+#[allow(clippy::unnecessary_fold)]
 pub fn part_1_fold(file_name: &str) -> Result<i32, Box<dyn Error>> {
   let v = util::text_file_to_vector(file_name)?;
   let res = v.iter().fold(0, |sum, i| sum + i);
