@@ -1,6 +1,7 @@
 use crate::util;
 use std::collections::HashMap;
 use std::error::Error;
+use std::iter::FromIterator;
 
 // part_1 does a checksum on the box IDs.
 pub fn part_1(file_name: &str) -> Result<i32, Box<dyn Error>> {
@@ -45,9 +46,8 @@ pub fn part_2(file_name: &str) -> Result<String, Box<dyn Error>> {
   for (i, id1) in ids.iter().enumerate() {
     for (j, id2) in ids.iter().enumerate() {
       if i != j {
-        let (b, common_chars) = diff_by_1(id1.to_string(), id2.to_string());
-        if b {
-          return Ok(common_chars.to_string())
+        if let Some(common_chars) = diff_by_1(id1.to_string(), id2.to_string()) {
+          return Ok(common_chars);
         }
       }
     }
@@ -55,6 +55,23 @@ pub fn part_2(file_name: &str) -> Result<String, Box<dyn Error>> {
   Err("id's that diff by 1 char not found")?
 }
 
-fn diff_by_1(s1: String, s2: String) -> (bool, String) {
-  (false, "test".to_string())
+fn diff_by_1(id1: String, id2: String) -> Option<String> {
+  let mut common_chars = vec![];
+  let mut diff_cnt = 0;
+  let id2_chars: Vec<char> = id2.chars().collect();
+  for (i, c) in id1.chars().enumerate() {
+    if c == id2_chars[i] {
+      common_chars.push(c);
+    } else {
+      diff_cnt += 1;
+      if diff_cnt > 1 {
+        return None;
+      }
+    }
+  }
+  if diff_cnt == 1 {
+    Some(String::from_iter(common_chars))
+  } else {
+    None
+  }
 }
